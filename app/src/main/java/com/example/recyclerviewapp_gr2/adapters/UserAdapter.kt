@@ -23,14 +23,14 @@ class UserAdapter(private val usersList : List<User>) : RecyclerView.Adapter<Use
         val user = usersList[position]
         holder.tvName.text = user.name
         holder.tvUsername.text = user.username
-        holder.tvEmail.text = user.email
-        holder.tvCity.text = user.address.city
+//        holder.tvEmail.text = user.email
+//        holder.tvCity.text = user.address.city
     }
 
     class UserViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvName : TextView = itemView.findViewById(R.id.tvName)
         val tvUsername : TextView = itemView.findViewById(R.id.tvUsername)
-        val tvEmail : TextView = itemView.findViewById(R.id.tvEmail)
-        val tvCity : TextView = itemView.findViewById(R.id.tvCity)
+//        val tvEmail : TextView = itemView.findViewById(R.id.tvEmail)
+//        val tvCity : TextView = itemView.findViewById(R.id.tvCity)
     }
 }
