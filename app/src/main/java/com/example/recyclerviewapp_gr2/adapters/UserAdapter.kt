@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewapp_gr2.R
+import com.example.recyclerviewapp_gr2.databinding.UserItemBinding
 import com.example.recyclerviewapp_gr2.models.User
 
 class UserAdapter(private val usersList : List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item,parent,false)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = UserItemBinding.inflate(inflater,parent,false)
         return UserViewHolder(view)
     }
 
@@ -21,16 +23,13 @@ class UserAdapter(private val usersList : List<User>) : RecyclerView.Adapter<Use
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = usersList[position]
-        holder.tvName.text = user.name
-        holder.tvUsername.text = user.username
-//        holder.tvEmail.text = user.email
-//        holder.tvCity.text = user.address.city
+        holder.bindUserToLayout(user)
     }
 
-    class UserViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val tvName : TextView = itemView.findViewById(R.id.tvName)
-        val tvUsername : TextView = itemView.findViewById(R.id.tvUsername)
-//        val tvEmail : TextView = itemView.findViewById(R.id.tvEmail)
-//        val tvCity : TextView = itemView.findViewById(R.id.tvCity)
+    class UserViewHolder(private val binding : UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bindUserToLayout(userParam: User) {
+            binding.user = userParam
+            binding.executePendingBindings()
+        }
     }
 }
